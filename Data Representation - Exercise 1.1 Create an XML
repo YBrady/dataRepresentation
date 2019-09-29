@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<!-- 
+		Higher Diploma in Data Analytics 2019
+		Data Representation Module  
+		Presented by Yvonne Brady ID: G00376355
+
+		Exercise 1.1	
+		Create an XML file that stores data for a library. 
+		The library has two catalogues (technical books, and for cookery books).
+		Each catalogue can contain a number of books (say 2 for the purpose of this exercise) . 
+		Books will have an ISBN, title and author. 
+	-->
+			
+			
+	<library>
+		<technical-catalogue>
+			<book>
+				<ISBN> 978-0-7645-8845-7 </ISBN>
+				<title> XML For Dummies, 4th Edition </title>
+				<author> Lucinda Dykes, Ed Tittel </author>
+			</book>
+			<book>
+				<ISBN> 978-1-1185-0422-2 </ISBN>
+				<title> Big Data For Dummies </title>
+				<author> Judith Hurwitz, Alan Nugent, Marcia Kaufman, Fern Halper, Dan Kirsch </author>
+			</book>
+		</technical-catalogue>
+		<cookery-catalogue>
+			<book>
+				<ISBN> 978-0-7645-5390-5 </ISBN>
+				<title> Cookies For Dummies </title>
+				<author> Carole Bloom </author>
+			</book>
+			<book>
+				<ISBN> 978-1-118-92231-6 </ISBN>
+				<title> Cooking Basics For Dummies, 5th Edition </title>
+				<author> Marie Rama, Bryan Miller </author>
+			</book>
+		</cookery-catalogue>
+	</library>
