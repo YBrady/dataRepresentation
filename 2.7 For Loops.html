@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <title>2.7 For Loops</title>
+    </head>
+
+    <body>
+        <div id="output">
+            output here
+        </div>
+
+        <script>
+            for (var i = 0; i < 10; i++){
+                console.log(i);
+            }
+
+            var names = ["Joe", "Mary", "Fred", "Brian"]
+            var output = ""
+            for (name of names){
+                output += name + "<br/>"
+                document.getElementById("output").innerHTML = output
+            }
+        </script>
+    </body>
+</html>

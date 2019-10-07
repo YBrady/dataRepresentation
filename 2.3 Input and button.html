@@ -1,0 +1,19 @@
+<html>
+    <head>
+        <title>2.3 Input & Button</title>
+    <body>`
+        <input id ="name" type="test" value = "enter name"/>
+        <br/>
+        <button onclick="buttonClicked()">Click Me</button>
+        <div id = "output"> output will go here </div>
+
+        <script>
+
+            function buttonClicked(){
+                var output = document.getElementById("name").value
+                document.getElementById("output").innerText = output
+            }
+        </script>
+    </body>
+
+</html>
