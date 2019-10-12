@@ -12,4 +12,8 @@ ___________________________________________
 ___________________________________________
 
 ## Table of Contents ##
-1. Exercise 1.1 - Create an XML
+1. Exercises & Work-a-Longs
+2. Labs
+ 2.1 Lab01 - Car Viewer
+ 2.2 Lab02 - Enhanced Car Viewer
+ 2.3 Lab03 - Web Scraper
