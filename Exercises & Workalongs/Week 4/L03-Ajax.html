@@ -1,0 +1,41 @@
+<html>
+
+    <head>
+        <!-- This magic line enables jQuery logic --> 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <title>read a simple json</title>
+    </head>
+
+    <body>
+        <!-- Button calls the jQuery -->
+        <button onclick="readJSON()">GO</button> <br />
+        <!-- Just to put context on the number returned -->
+        Euro Value is :
+        <!-- Placeholder for the result-->
+        <div id="output"></div>
+                    
+        <script>
+            // Script to read information form the website
+            function readJSON() {
+                $.ajax({ 
+                    // Lists the URL to be interrogated
+                    "url": "https://api.coindesk.com/v1/bpi/currentprice.json",
+                    "method": "GET", // Getting information from server
+                    "data": "",
+                    "dataType": "JSON",
+                    // put the result in the div "output" above
+                    "success": function (result) {
+                        var rate = result.bpi.EUR.rate;
+                        document.getElementById("output").innerText = rate;
+                        //console.log(result);
+                    },
+                    // Log the error to console if there is one
+                    "error": function (xhr, status, error) {
+                        console.log("error: " + status + " msg:" + error);
+                    }
+                });
+            }
+        </script>
+    </body>
+
+</html>
