@@ -1,0 +1,101 @@
+<html>
+    <head>
+        <!-- THe magic line for jquery! -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <!-- ANd the bootstrap line for formatting-->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <title>Lab 03 AJAX Read A Simple JSON</title>
+    </head>
+    <body>
+        <!-- Button that calls the function -->
+        Update Exchange Rates : <button onclick = "readJSON()">Go</button>
+        <br/>
+        <br/>
+        <div class = "w-25 p3">
+                <!-- Putting the results in a table --> 
+                <table class = "table table-striped" id="ratesTable">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Currency</th>
+                            <th>Current Rate</th>
+                            <th>Change</th>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <td>US Dollar (US$)</td>
+                        <td id = "USD"></td> <!-- identifying where the values need to go -->
+                        <td id = "USDChange"></td>
+                    </tr>
+                    <tr>
+                        <td>Euro (€)</td>
+                        <td id = "EUR"></td> <!-- identifying where the values need to go -->
+                        <td id = "EURChange"></td>
+                    </tr>
+                    <tr>
+                        <td>Sterling (GB£)</td>
+                        <td id = "GBP"></td> <!-- identifying where the values need to go -->
+                        <td id = "GBPChange"></td>
+                    </tr>
+                </table>
+    </body>
+    <script>
+            // Function that gets the data
+            function readJSON(){
+                // Getting the data
+                $.ajax({
+                    // Specifying the URL
+                    "url": "https://api.coindesk.com/v1/bpi/currentprice.json",
+                    // Getting the data
+                    "method":"GET",
+                    "data":"",
+                    "dataType":"JSON",
+                    // All ok - print to console
+                    "success": function(result){
+                        if (document.getElementById("USD").innerHTML.length > 0) {
+                        //write all the rates to the table
+                        if (document.getElementById("USD").innerHTML > result.bpi.USD.rate){
+                            document.getElementById("USDChange").innerHTML ="Going Down"
+                        }
+                        else if(document.getElementById("USD").innerHTML < result.bpi.USD.rate){
+                            document.getElementById("USDChange").innerHTML ="Going Up"
+                        }
+                        else {
+                            document.getElementById("USDChange").innerHTML ="No Change"
+                        }
+                        //write all the rates to the table
+                        if (document.getElementById("EUR").innerHTML > result.bpi.EUR.rate){
+                            document.getElementById("EURChange").innerHTML ="Going Down"
+                        }
+                        else if(document.getElementById("EUR").innerHTML < result.bpi.EUR.rate){
+                            document.getElementById("EURChange").innerHTML ="Going Up"
+                        }
+                        else {
+                            document.getElementById("EURChange").innerHTML ="No Change"
+                        }
+                        //write all the rates to the table
+                        if (document.getElementById("GBP").innerHTML > result.bpi.GBP.rate){
+                            document.getElementById("GBPChange").innerHTML ="Going Down"
+                        }
+                        else if(document.getElementById("GBP").innerHTML < result.bpi.GBP.rate){
+                            document.getElementById("GBPChange").innerHTML ="Going Up"
+                        }
+                        else {
+                            document.getElementById("GBPChange").innerHTML ="No Change"
+                        }} 
+                        else{
+                            document.getElementById("USDChange").innerHTML ="First reading"
+                            document.getElementById("EURChange").innerHTML ="First Reading"
+                            document.getElementById("GBPChange").innerHTML ="First Reading"
+                        }
+                        document.getElementById("USD").innerHTML = result.bpi.USD.rate
+                        document.getElementById("EUR").innerHTML = result.bpi.EUR.rate
+                        document.getElementById("GBP").innerHTML = result.bpi.GBP.rate
+                    },
+                    // On error relay error
+                    "error":function(xhr,status,error){
+                        console.log("error:"+status+" msg:"+error);
+                    }
+                });
+            }
+    </script>
+</html>

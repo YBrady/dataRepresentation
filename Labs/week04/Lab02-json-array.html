@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <!-- THe magic line for jquery! -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <title>Lab 02 JSON Array</title>
+    </head>
+    <body>
+        <!-- This button calls the Script -->
+        <button onclick ="displayJSON()">Go</button>
+    </body>
+    <script>
+        // Diplays items on console. Called by button above
+        function displayJSON(){
+            // Parse the JSON script to make it an object
+            var obj = JSON.parse('{"employees": [{"firstName": "John", "lastName": "Doe"},{ "firstName": "Anna","lastName": "Smith"},{"firstName": "Peter","lastName": "Jones"}]}')
+            // Loop through each emplyee and print out their first name to console
+            for (employee of obj.employees){
+                console.log(employee.firstName)}
+        }
+    </script>
+</html>
