@@ -198,17 +198,20 @@
         }
 
         function doUpdate(){
+            // Get the car data
             var car = getCarFromForm();
+            // Record the row affected
             var rowElement = document.getElementById(car.reg)
             console.log(JSON.stringify(car));
             $.ajax({
-                "url": "http://127.0.0.1:5000/cars/"+encodeURI(car.reg),
+                "url": "http://127.0.0.1:5000/cars/"+encodeURI(car.reg), // need encodeURI to automatically addd %20% etc
                 "method":"PUT",
-                "data":JSON.stringify(car),
+                "data":JSON.stringify(car), // converts the car details to JSON string
                 "dataType": "JSON",
                 contentType: "application/json; charset=utf-8",
                 "success":function(result){
                     console.log(result);
+                    // Put the updated car details back in correct row
                     setCarInRow(rowElement, car);    
                 },
                 "error":function(xhr,status,error){

@@ -61,20 +61,28 @@ def create_car():
 
 @app.route('/cars/<string:reg>', methods =['PUT'])
 def update_car(reg):
+    # Checks to see if a car was found
     foundCars=list(filter(lambda t : t["reg"] ==reg, cars))
+    # If no car found return 404 error
     if len(foundCars) == 0:
         abort(404)
+    # Checks for valid JSON request
     if not request.json:
         abort(400)
+    # Makes sure make is a string
     if "make" in request.json and type(request.json["make"]) != str:
         abort(400)
+    # Makes sure model is a string
     if "model" in request.json and type(request.json["model"]) is not str:
         abort(400)
-    #if "price" in request.json and type(request.json["price"]) is not int:
-    #    abort(400)
+    # Makes sure price is an integer
+    if "price" in request.json and type(request.json["price"]) is not int:
+        abort(400)
+    # Update the first car found with the details from the JSON request
     foundCars[0]["make"]  = request.json.get("make", foundCars[0]["make"])
     foundCars[0]["model"] =request.json.get("model", foundCars[0]["model"])
     foundCars[0]["price"] =request.json.get("price", foundCars[0]["price"])
+    # Return the updated car details
     return jsonify( {"car":foundCars[0]})
 #curl -i -H "Content-Type:application/json" -X PUT -d '{"make":"Fiesta"}' http://localhost:5000/cars/181%20G%201234
 # for windows use this one
