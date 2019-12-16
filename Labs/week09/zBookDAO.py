@@ -1,6 +1,6 @@
 import mysql.connector
 
-class BookDAO:
+class zBookDAO:
     db = ""
     def __init__(self):
         self.db = mysql.connector.connect(
@@ -15,7 +15,7 @@ class BookDAO:
 
     def create(self, values):
         cursor = self.db.cursor()
-        sql = "insert into student (name, age) values (%s,%s)"
+        sql = "insert into book (title, author, price) values (%s,%s,%s)"
         cursor.execute(sql, values)
         self.db.commit()
         return cursor.lastrowid
@@ -23,7 +23,7 @@ class BookDAO:
 
     def getAll(self):
         cursor = self.db.cursor()
-        sql = "select * from student"
+        sql = "select * from book"
         cursor.execute(sql)
         result = cursor.fetchall()
         return result
@@ -31,7 +31,7 @@ class BookDAO:
 
     def findByID(self, id):
         cursor = self.db.cursor()
-        sql = "select * from student where id = %s"
+        sql = "select * from book where id = %s"
         values = (id,)
         cursor.execute(sql, values)
         result = cursor.fetchone()
@@ -40,19 +40,32 @@ class BookDAO:
 
     def update(self, values):
         cursor = self.db.cursor()
-        sql = "update student set name= %s, age=%s where id = %s"
+        sql = "update book set title= %s, author=%s, price=%s where id = %s"
         cursor.execute(sql, values)
         self.db.commit()
 
 
     def delete(self, id):
         cursor = self.db.cursor()
-        sql = "delete from student where id = %s"
+        sql = "delete from book where id = %s"
         values = (id,)
         cursor.execute(sql, values)
         self.db.commit()
         print("delete done")
 
-    
+    # Function to convert the return values to dictionary items
+    def convertToDictionary(self, result):
+        # Create the column names
+        colnames = ["id", "Title", "Author", "Price"]
+        item = {}  # blank dictionary object
+        
+        # Execute only if the result has something in it
+        if result:
+            # For every column name
+            for i, colName in enumerate(colnames):
+                # Match the column name with the result based on location in tuple
+                item[colName] = result[i]
+        # Return the dictionary-ise item
+        return item
 
-bookDAO = BookDAO()
+bookDAO = zBookDAO()
