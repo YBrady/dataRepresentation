@@ -11,9 +11,10 @@ ___________________________________________
 **Student ID**: G00376355  
 ___________________________________________
 
+
 ## Table of Contents ##
-1. Exercises & Work-a-Longs
-2. Labs  
- 2.1 Lab01 - Car Viewer  
- 2.2 Lab02 - Enhanced Car Viewer  
- 2.3 Lab03 - Web Scraper  
+Exercises & Work-a-Longs  
+Labs  
+XML
+    
+Note - some labs were built on previous labs / exercises and so too was the file.  
